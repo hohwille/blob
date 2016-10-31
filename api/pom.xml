@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>net.sf.m-m-m</groupId>
+    <artifactId>mmm-blob-modules</artifactId>
+    <version>dev-SNAPSHOT</version>
+    <relativePath>../modules/pom.xml</relativePath>
+  </parent>
+  <artifactId>mmm-blob-api</artifactId>
+  <version>${net.sf.mmm.blob.version}</version>
+  <packaging>jar</packaging>
+  <name>${project.artifactId}</name>
+  <description>This project provides the API of mmm-blob.</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-util-io</artifactId>
+    </dependency>
+    <!--
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-fileupload</artifactId>      
+    </dependency>
+    -->
+  </dependencies>
+</project>
