@@ -19,10 +19,14 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>mmm-util-io</artifactId>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-util-data</artifactId>
+    </dependency>
     <!--
     <dependency>
       <groupId>org.apache.commons</groupId>
-      <artifactId>commons-fileupload</artifactId>      
+      <artifactId>commons-fileupload</artifactId>
     </dependency>
     -->
   </dependencies>

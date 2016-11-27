@@ -14,8 +14,9 @@
   <name>${project.artifactId}</name>
   <description>This project provides an API and implementation for a storage of Binary Large OBjects (BLOBs).</description>
   <properties>
+    <java.version>1.8</java.version>
     <net.sf.mmm.blob.version>1.0.0-SNAPSHOT</net.sf.mmm.blob.version>
-    <net.sf.mmm.util.version>8.0.0-SNAPSHOT</net.sf.mmm.util.version>
+    <net.sf.mmm.util.version>8.4.0-SNAPSHOT</net.sf.mmm.util.version>
   </properties>
 
   <modules>

@@ -18,6 +18,14 @@
     <module>../impl-hdfs</module>
   </modules>
 
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>mmm-util-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
   <dependencyManagement>
     <dependencies>
       <!-- BOM of mmm-util -->
