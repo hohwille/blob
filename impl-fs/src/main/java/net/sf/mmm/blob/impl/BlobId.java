@@ -4,9 +4,8 @@ package net.sf.mmm.blob.impl;
 
 import java.io.File;
 
-import net.sf.mmm.util.data.api.id.AbstractId;
 import net.sf.mmm.util.data.api.id.Id;
-import net.sf.mmm.util.lang.api.attribute.AttributeReadId;
+import net.sf.mmm.util.data.base.id.StringVersionId;
 import net.sf.mmm.util.resource.api.DataResource;
 
 /**
@@ -15,7 +14,7 @@ import net.sf.mmm.util.resource.api.DataResource;
  * @author hohwille
  * @since 1.0.0
  */
-public class BlobId extends AbstractId<DataResource> implements AttributeReadId<String> {
+public class BlobId extends StringVersionId<DataResource> {
 
   private static final char SEPARATOR_FOLDER = '/';
 
@@ -27,8 +26,6 @@ public class BlobId extends AbstractId<DataResource> implements AttributeReadId<
 
   private final String copy;
 
-  private final String id;
-
   /**
    * The constructor.
    *
@@ -38,7 +35,7 @@ public class BlobId extends AbstractId<DataResource> implements AttributeReadId<
    */
   public BlobId(String partition, String folder, String copy) {
 
-    this(partition, folder, copy, VERSION_LATEST);
+    this(partition, folder, copy, null);
   }
 
   /**
@@ -50,7 +47,7 @@ public class BlobId extends AbstractId<DataResource> implements AttributeReadId<
    * @param version - see {@link #getVersion()}.
    */
   @SuppressWarnings({ "unchecked", "rawtypes" })
-  public BlobId(String partition, String folder, String copy, long version) {
+  public BlobId(String partition, String folder, String copy, Long version) {
 
     this(partition, folder, copy, version, createId(partition, folder, copy));
   }
@@ -64,12 +61,11 @@ public class BlobId extends AbstractId<DataResource> implements AttributeReadId<
    * @param copy - see {@link #getCopy()}.
    * @param version - see {@link #getVersion()}.
    */
-  private BlobId(String partition, String folder, String copy, long version, String id) {
-    super(DataResource.class, version);
+  private BlobId(String partition, String folder, String copy, Long version, String id) {
+    super(DataResource.class, id, version);
     this.partition = partition;
     this.folder = folder;
     this.copy = copy;
-    this.id = id;
   }
 
   private static String createId(String partition, String folder, String copy) {
@@ -87,12 +83,6 @@ public class BlobId extends AbstractId<DataResource> implements AttributeReadId<
       sb.append(copy);
     }
     return sb.toString();
-  }
-
-  @Override
-  public String getId() {
-
-    return this.id;
   }
 
   /**
@@ -122,12 +112,12 @@ public class BlobId extends AbstractId<DataResource> implements AttributeReadId<
 
   @SuppressWarnings({ "unchecked", "rawtypes" })
   @Override
-  protected <T> AbstractId<T> newId(Class<T> newType, long newVersion) {
+  protected <T> StringVersionId<T> newId(Class<T> newType, Long newVersion) {
 
     if (!DataResource.class.isAssignableFrom(newType)) {
       throw new IllegalStateException(newType.getName());
     }
-    return (AbstractId) new BlobId(this.partition, this.folder, this.copy, newVersion, this.id);
+    return (StringVersionId) new BlobId(this.partition, this.folder, this.copy, newVersion, getId());
   }
 
   /**
@@ -136,7 +126,7 @@ public class BlobId extends AbstractId<DataResource> implements AttributeReadId<
    */
   public static BlobId of(String id) {
 
-    return of(id, VERSION_LATEST);
+    return of(id, null);
   }
 
   /**
@@ -144,7 +134,7 @@ public class BlobId extends AbstractId<DataResource> implements AttributeReadId<
    * @param version the {@link #getVersion() version}.
    * @return the new {@link BlobId} instance.
    */
-  public static BlobId of(String id, long version) {
+  public static BlobId of(String id, Long version) {
 
     String partition = id;
     int idEnd = id.length();

@@ -3,7 +3,7 @@
 package net.sf.mmm.blob.api;
 
 import net.sf.mmm.util.data.api.id.Id;
-import net.sf.mmm.util.data.api.id.StringId;
+import net.sf.mmm.util.data.base.id.StringVersionId;
 import net.sf.mmm.util.exception.api.ObjectNotFoundException;
 import net.sf.mmm.util.io.api.RuntimeIoException;
 import net.sf.mmm.util.resource.api.DataResource;
@@ -93,7 +93,7 @@ public interface BlobStore {
    */
   default Id<DataResource> createId(String id) {
 
-    return StringId.of(DataResource.class, id);
+    return StringVersionId.of(DataResource.class, id);
   }
 
 }
